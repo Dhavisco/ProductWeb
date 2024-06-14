@@ -17,7 +17,7 @@ This project is a product page application that allows users to browse through a
 
 ## Setup
 
-1. Clone the repository: `git clone https://github.com/Dhavisco/Food-Order-App.git`
+1. Clone the repository: `git clone https://github.com/Dhavisco/ProductWeb.git`
 2. Open Terminal
 3. Install dependencies by running the command: `npm install` in the terminal
 4. Start the development server: `npm start`
