@@ -1,6 +1,6 @@
-# Food Order App
+# Product App
 
-This project is a food ordering application that allows users to select their cuisines, check prices, and place orders. The orders are then sent to the respective restaurants for preparation.
+This project is a product page application that allows users to browse through a list of products, add items to their cart, and manage their cart by adjusting quantities or removing items. Users can also proceed to checkout to finalize their purchases.
 
 ## Table of Contents
 - Features
@@ -11,10 +11,9 @@ This project is a food ordering application that allows users to select their cu
 - License
 
 ## Features
-- View Menus: View available menu with various food items.
-- Add to Cart: Users can add food items to their cart.
-- Checkout: Users can checkout their cart and place an order.
-- Order Tracking: Real-time order tracking to keep users informed about their order status.
+- View Products: Browse available products with detailed descriptions and prices.
+- Add to Cart: Users can add products to their cart.
+- Edit Cart: Users can adjust the quantity of items in their cart or remove items.
 
 ## Setup
 
@@ -26,19 +25,15 @@ This project is a food ordering application that allows users to select their cu
 ## Usage
 Open the application in your browser after starting the development server.
 
-- Adding a New Order:
-Select the meal from the menu.
-Enter the amount of meal item.
-Click on the Add Button.
+- Adding a Product to Cart:
+Browse through the list of products.
+Select the desired product.
+Click on the "Add to Cart" button.
 
-- Editing Order:
-Click on the cart at the top right corner.
-Edit your order.
-Click on confirm button to confirm your order.
-- Checkout: 
-Proceed to checkout.
-Input your details.
-Submit your order.
+- Editing Cart:
+Click on the cart icon at the top right corner.
+Adjust the quantity of items or remove items as needed.
+Confirm the changes.
 
 
 ## Technologies Used
@@ -46,20 +41,20 @@ Submit your order.
 - JavaScript
 - HTML
 - CSS
-- Firebase
+- REST API 
 
 ## Screenshots
-![Add Task](<public/screenshots/mealdescription.png>)
-![Task](<public/screenshots/mealitems.png>) 
+![Description](<public/screenshots/webproductDescription.png>)
+![Product](<public/screenshots/webproductItem.png>) 
 
 
 ## Future Enhancements
 
-- Add the ability to send notification for food order update
-- more meal items
-- Real time order tracking
-- Add payment options
-- Add Meal images
+- Add the ability to send notifications for order updates.
+- Expand product catalog with more items.
+- Real-time order tracking.
+- Add various payment options.
+- Add product images.
 
 ## Contributing
 Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
