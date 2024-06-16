@@ -1,34 +1,28 @@
-import { useContext } from 'react';
 import PropTypes from 'prop-types'
-
-import ProductItemForm from './ProductItemForm';
 import classes from "./ProductItem.module.css";
-import CartContext from '../../../store/cart-context';
-
 
 const ProductItem = (props) => {
-  const cartCtx = useContext(CartContext);
 
   const price = `₦${props.price.toFixed(2)}`;
 
-  const addToCartHandler = amount => {
-    cartCtx.addItem({
-      id: props.id,
-      name: props.name,
-      amount: amount,
-      price: props.price
-    });
-  };
-
   return (
-    <li className={classes.product}>
-      <div>
-        <h3>{props.name}</h3>
+    <li className={classes.product} onClick={props.onClick}>
+      <div className={classes.productContent}>
+        <div>
+          <img
+            src={props.image}
+            alt=""
+          />
+        </div>
+        <div className={classes.name}>{props.name}</div>
         <div className={classes.description}>{props.description}</div>
         <div className={classes.price}>{price}</div>
       </div>
-      <div>
-        <ProductItemForm onAddToCart={addToCartHandler} />
+      <div className={classes.actions}>
+        <button className={classes.addcart}>
+          Add to Cart
+        </button>
+        <div className={classes.v_pro}>View Product</div>
       </div>
     </li>
   );

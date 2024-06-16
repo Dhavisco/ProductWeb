@@ -1,0 +1,89 @@
+.details {
+  text-align: start;
+  margin: 0 1rem;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.details .name{
+    font-size: large;
+    font-weight: 600;
+}
+
+.price {
+  font-size: 1.5rem;
+  color: black;
+}
+
+.details p{
+    width: 90%;
+    color: rgb(22, 22, 22);
+}
+
+.details img {
+  height: 6rem;
+  width: 6rem;
+}
+
+
+.actions {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.actions label {
+  margin-right: 1rem;
+}
+
+.actions input {
+  width: 50px;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.actions button {
+ font: inherit;
+font-size: 15px;
+cursor: pointer;
+/* background-color: #145500;
+border: 1px solid #208501; */
+background-color: #1e7e01;
+border: 1px solid #1c7700;
+
+padding: 0.5rem 4rem;
+color: white;
+border-radius: 5px;
+font-weight: bold;
+}
+
+.actions button:hover,
+.actions button:active {
+  /* background-color: #1e7e01;
+border-color: #1c7700; */
+background-color: #145500;
+border-color:#208501;
+
+}
+
+.closeButton {
+  font: inherit;
+  cursor: pointer;
+  background-color: #faca2e;
+  border: 1px solid #f7c72a;
+  padding: 0.5rem 2rem;
+  color: rgb(53, 53, 53);
+  border-radius: 25px;
+  font-weight: bold;
+  width: 80%;
+  margin-left: 1rem;
+}
+
+.closeButton:hover,
+.closeButton:active {
+  background-color: #dfb21e;
+  border-color: #ecbe26;
+}

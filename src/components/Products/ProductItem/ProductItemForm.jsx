@@ -15,7 +15,8 @@ const ProductItemForm = (props) => {
 
     if (
       enteredAmount.trim().length === 0 ||
-      enteredAmountNumber < 1
+      enteredAmountNumber < 1 ||
+      enteredAmountNumber > 20
     ) {
       setAmountIsValid(false);
       return;
@@ -28,16 +29,17 @@ const ProductItemForm = (props) => {
     <form className={classes.form} onSubmit={submitHandler}>
       <Input
         ref={amountInputRef}
-        label='Amount'
+        label=''
         input={{
           id: 'amount',
           type: 'number',
           min: '1',
+          max: '20',
           step: '1',
           defaultValue: '1',
         }}
       />
-      <button>+ Add</button>
+      <button>Add to Cart</button>
       {!amountIsValid && <p>Please enter a valid amount.</p>}
     </form>
   )

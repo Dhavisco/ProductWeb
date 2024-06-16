@@ -1,8 +1,8 @@
-import Card from '../UI/Card';
 import classes from './AvailableProducts.module.css';
 import { useEffect, useState } from 'react';
 import ProductItem from './ProductItem/ProductItem';
-
+import ProductDetails from './ProductItem/ProductDetails';
+import Modal from '../UI/Modal';
 // const DUMMY_MEALS = [
 //   {
 //     id: 'm1',
@@ -37,6 +37,7 @@ const AvailableProducts = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsloading] = useState(true);
   const [httpError, setHttpError] = useState();
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -54,6 +55,7 @@ const AvailableProducts = () => {
       name: product.title,
       description: product.description,
       price: product.price,
+      image:product.thumbnail,
     }));
 
     setProducts(loadedProducts);
@@ -85,6 +87,14 @@ const AvailableProducts = () => {
     )
   }
 
+   const showProductDetails = (product) => {
+     setSelectedProduct(product);
+   };
+
+   const closeModalHandler = () => {
+     setSelectedProduct(null);
+   };
+
   const productsList = products.map((product) => (
     <ProductItem
       key={product.id}
@@ -92,14 +102,22 @@ const AvailableProducts = () => {
       name={product.name}
       description={product.description}
       price={product.price}
+      image={product.image}
+      onClick={() => showProductDetails(product)}
     />
   ));
 
   return (
     <section className={classes.products}>
-      <Card>
-        <ul>{productsList}</ul>
-      </Card>
+      {selectedProduct && (
+        <Modal onClose={closeModalHandler}>
+          <ProductDetails
+            product={selectedProduct}
+            onClose={closeModalHandler}
+          />
+        </Modal>
+      )}
+      <div className={classes.grid}>{productsList}</div>
     </section>
   );
 };

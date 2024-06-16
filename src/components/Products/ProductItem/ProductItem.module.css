@@ -1,26 +1,88 @@
 .product {
-  display: flex;
-  justify-content: space-between;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  overflow: hidden;
   margin: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
-.product h3 {
-  margin: 0 0 0.25rem 0;
+.productContent {
+  flex: 1;
 }
+
+.product .name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.product img{
+  height: 8rem;
+  width: 8rem;
+   transition: transform 0.4s ease; /* Smooth transition */
+}
+.product img:hover {
+  transform: scale(1.2); /* Zoom-in effect */
+}
+
 
 .description {
+  font-size: 1rem;
+  color: #555;
+  margin: 0.5rem 0;
   font-style: italic;
-  padding-right: 2rem;
 }
 
 .price {
+  font-size: 1.25rem;
+  color: black;
+  margin: 0.5rem 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
+  gap: 14px;
+}
+
+.actions button {
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  background-color: #145500;
+  border: 1px solid #208501;
+  padding: 0.5rem 2rem;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.actions .v_pro{
+  font-size: 12px;
+display: flex;
+align-items: center;
+cursor: pointer;
+color: #1c7700;
+}
+
+.actions button:hover,
+.actions button:active {
+ background-color: #1e7e01;
+border-color: #1c7700;
+
+}
+
+
+/* .price {
   margin-top: 0.25rem;
   font-weight: bold;
   color: #ad5502;
   font-size: 1.25rem;
-}
+} */
 
 @media screen and (max-width: 300px) {
   .product {
