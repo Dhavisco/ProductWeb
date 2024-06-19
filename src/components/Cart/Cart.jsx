@@ -1,12 +1,10 @@
 import { useContext} from 'react';
-import PropTypes from 'prop-types';
-import Modal from '../UI/Modal';
 import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import CartContext from '../../store/cart-context';
 import { Link } from 'react-router-dom';
 
-const Cart = (props) => {
+const Cart = () => {
   const cartCtx = useContext(CartContext);
 
   const totalAmount = `₦${cartCtx.totalAmount.toFixed(2)}`;
@@ -39,7 +37,7 @@ const Cart = (props) => {
   const modalActions = (
     <div className={classes.actions}>
       <Link to="/">
-        <button className={classes["button--alt"]} onClick={props.onClose}>
+        <button className={classes["button--alt"]}>
           Go back Home
         </button>
       </Link>
@@ -68,12 +66,5 @@ const Cart = (props) => {
   return <div>{cartContent}</div>;
 };
 
-Cart.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};
-
-Modal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};
 
 export default Cart;

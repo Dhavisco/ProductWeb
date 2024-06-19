@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import HeaderCartButton from './HeaderCartButton';
 import mealsImage from '../../assets/product.jpg';
@@ -21,10 +20,6 @@ const Header = () => {
       </div>
     </>
   );
-};
-
-Header.propTypes = {
-  onShowCart: PropTypes.func.isRequired,
 };
 
 export default Header;
