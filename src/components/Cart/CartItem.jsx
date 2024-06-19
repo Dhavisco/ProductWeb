@@ -1,6 +1,5 @@
 import classes from './CartItem.module.css';
 import PropTypes from 'prop-types';
-
 const CartItem = (props) => {
   const price = `₦${props.price.toFixed(2)}`;
 
@@ -30,6 +29,9 @@ CartItem.propTypes = {
   price: PropTypes.number.isRequired,
   onRemove: PropTypes.func.isRequired,
   onAdd: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
 }
 
 export default CartItem;
+
+
