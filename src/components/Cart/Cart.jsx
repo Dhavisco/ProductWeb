@@ -54,8 +54,11 @@ const Cart = () => {
           <span>{totalAmount}</span>
         </div>
       ) : (
-        <div className={classes.total}>
+        <div className={classes.empty}>
           <span>No Product found in Cart</span>
+          <Link to="/" className={classes.emppro}>
+            <div>Click to Add some products</div>
+          </Link>
         </div>
       )}
 
