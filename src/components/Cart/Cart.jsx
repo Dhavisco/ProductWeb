@@ -4,6 +4,7 @@ import Modal from '../UI/Modal';
 import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import CartContext from '../../store/cart-context';
+import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
@@ -37,26 +38,34 @@ const Cart = (props) => {
 
   const modalActions = (
     <div className={classes.actions}>
-      <button className={classes["button--alt"]} onClick={props.onClose}>
-        Close
-      </button>
+      <Link to="/">
+        <button className={classes["button--alt"]} onClick={props.onClose}>
+          Go back Home
+        </button>
+      </Link>
       {hasItems && <button className={classes.button}>Order</button>}
     </div>
   );
 
-  const cartModalContent = (
-    <>
+  const cartContent = (
+    <div className={classes.cart}>
       {cartItems}
-      <div className={classes.total}>
-        <span>Total Amount</span>
-        <span>{totalAmount}</span>
-      </div>
+      {hasItems ? (
+        <div className={classes.total}>
+          <span>Total Amount</span>
+          <span>{totalAmount}</span>
+        </div>
+      ) : (
+        <div className={classes.total}>
+          <span>No Product found in Cart</span>
+        </div>
+      )}
 
       {hasItems && modalActions}
-    </>
+    </div>
   );
 
-  return <Modal onClose={props.onClose}>{cartModalContent}</Modal>;
+  return <div>{cartContent}</div>;
 };
 
 Cart.propTypes = {

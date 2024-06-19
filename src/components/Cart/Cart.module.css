@@ -6,6 +6,10 @@
   overflow: auto;
 }
 
+.cart{
+  margin: 1rem;
+}
+
 .total {
   display: flex;
   justify-content: space-between;

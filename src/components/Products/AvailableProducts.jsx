@@ -1,99 +1,60 @@
-import classes from './AvailableProducts.module.css';
-import { useEffect, useState } from 'react';
-import ProductItem from './ProductItem/ProductItem';
-import ProductDetails from './ProductItem/ProductDetails';
-import Modal from '../UI/Modal';
-// const DUMMY_MEALS = [
-//   {
-//     id: 'm1',
-//     name: 'Sushi',
-//     description: 'Finest fish and veggies',
-//     price: 22.99,
-//   },
-//   {
-//     id: 'm2',
-//     name: 'Schnitzel',
-//     description: 'A german specialty!',
-//     price: 16.5,
-//   },
-//   {
-//     id: 'm3',
-//     name: 'Barbecue Burger',
-//     description: 'American, raw, meaty',
-//     price: 12.99,
-//   },
-//   {
-//     id: 'm4',
-//     name: 'Green Bowl',
-//     description: 'Healthy...and green...',
-//     price: 18.99,
-//   },
-// ];
+// src/components/Products/AvailableProducts.jsx
 
-
+import classes from "./AvailableProducts.module.css";
+import { useEffect, useState } from "react";
+import ProductItem from "./ProductItem/ProductItem";
+import ProductDetails from "./ProductItem/ProductDetails";
+import Modal from "../UI/Modal";
+import { fetchProducts } from "../../utils/api";
 
 const AvailableProducts = () => {
+  const apiurl = import.meta.env.VITE_API_URL;
 
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsloading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-    const response = await fetch("https://dummyjson.com/products");
-
-        if(!response.ok){
-          throw new Error ('Something went wrong')
-        }
-
-
-    const responseData = await response.json();
-
-    const loadedProducts = responseData.products.map((product) => ({
-      id: product.id,
-      name: product.title,
-      description: product.description,
-      price: product.price,
-      image:product.thumbnail,
-    }));
-
-    setProducts(loadedProducts);
-    setIsloading(false)
-
-    };
-    
-      fetchProducts().catch((error) =>{
-        setIsloading(false);
+    const getProducts = async () => {
+      try {
+        const loadedProducts = await fetchProducts(apiurl);
+        setProducts(loadedProducts);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
         setHttpError(error.message);
-      });
+      }
+    };
 
-  }, []);
+    getProducts();
+  }, [apiurl]);
 
-
-  if (isLoading){
+  if (isLoading) {
     return (
-    <section className={classes.ProductsLoading}>
-<p>Loading...</p>
-    </section>
-  )
-  }
-
-  if (httpError){
-    return(
-      <section>
-        <p className={classes.ProductsError}>{`${httpError}. Please check your internet connection`}</p>
+      <section className={classes.ProductsLoading}>
+        <p>Loading...</p>
       </section>
-    )
+    );
   }
 
-   const showProductDetails = (product) => {
-     setSelectedProduct(product);
-   };
+  if (httpError) {
+    return (
+      <section>
+        <p
+          className={classes.ProductsError}
+        >{`${httpError}. Please check your internet connection`}</p>
+      </section>
+    );
+  }
 
-   const closeModalHandler = () => {
-     setSelectedProduct(null);
-   };
+  const showProductDetails = (product) => {
+    setSelectedProduct(product);
+  };
+
+  const closeModalHandler = () => {
+    setSelectedProduct(null);
+  };
 
   const productsList = products.map((product) => (
     <ProductItem

@@ -1,7 +1,6 @@
 .form {
   text-align: right;
   display: flex;
-flex-direction: row;
 
 }
 
@@ -18,10 +17,50 @@ flex-direction: row;
 
 }
 
+.addrem {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  color: rgb(128, 18, 18);
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid rgb(100, 10, 10);
+}
+
+.addButton {
+  margin-top: 0.8rem;
+  margin-left: 1rem;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.addrem:hover {
+  background-color: transparent;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between elements */
+}
+
+input {
+  width: 3rem;
+  text-align: center;
+}
+
 .form button:hover,
 .form button:active {
-  background-color: #641e03;
-  border-color: #641e03;
+  background-color: #014b11;
+border: 1px solid #014b11;
+
 }
 
 @media (max-width: 350px) {

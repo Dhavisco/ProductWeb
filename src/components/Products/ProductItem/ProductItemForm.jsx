@@ -1,48 +1,53 @@
-import { useRef, useState } from 'react';
-import PropTypes from 'prop-types'
-import Input from '../../UI/Input';
-import classes from './ProductItemForm.module.css';
+import { useState } from "react";
+import PropTypes from "prop-types";
+import classes from "./ProductItemForm.module.css";
 
 const ProductItemForm = (props) => {
+  const [amount, setAmount] = useState(1);
   const [amountIsValid, setAmountIsValid] = useState(true);
-  const amountInputRef = useRef();
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const enteredAmount = amountInputRef.current.value;
-    const enteredAmountNumber = +enteredAmount;
-
-    if (
-      enteredAmount.trim().length === 0 ||
-      enteredAmountNumber < 1 ||
-      enteredAmountNumber > 20
-    ) {
+    if (amount < 1 || amount > 20) {
       setAmountIsValid(false);
       return;
     }
 
-    props.onAddToCart(enteredAmountNumber);
+    props.onAddToCart(amount);
+  };
+
+  const addNumberHandler = () => {
+    setAmount((prevAmount) => {
+      const newAmount = prevAmount + 1;
+      return newAmount > 20 ? 20 : newAmount;
+    });
+  };
+
+  const removeNumberHandler = () => {
+    setAmount((prevAmount) => {
+      const newAmount = prevAmount - 1;
+      return newAmount < 1 ? 1 : newAmount;
+    });
   };
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
-      <Input
-        ref={amountInputRef}
-        label=''
-        input={{
-          id: 'amount',
-          type: 'number',
-          min: '1',
-          max: '20',
-          step: '1',
-          defaultValue: '1',
-        }}
-      />
-      <button>Add to Cart</button>
-      {!amountIsValid && <p>Please enter a valid amount.</p>}
+      <div className={classes.actions}>
+        <div className={classes.addrem} onClick={removeNumberHandler}>
+          −
+        </div>
+        <div className={classes.amount}>{amount}</div>
+        <div className={classes.addrem} onClick={addNumberHandler}>
+          +
+        </div>
+        <button type="submit" className={classes.addButton}>
+          Add to Cart
+        </button>
+      </div>
+      {!amountIsValid && <p>Please enter a valid amount (1-20).</p>}
     </form>
-  )
+  );
 };
 
 ProductItemForm.propTypes = {
