@@ -4,6 +4,14 @@ import classes from "./ProductItem.module.css";
 const ProductItem = (props) => {
 
   const price = `₦${props.price.toFixed(2)}`;
+   const maxDescriptionLength = 100; // Maximum number of characters for the description
+
+   const reduceDescription = (description) => {
+     if (description.length > maxDescriptionLength) {
+       return description.substring(0, maxDescriptionLength) + "...";
+     }
+     return description;
+   };
 
   return (
     <li className={classes.product} onClick={props.onClick}>
@@ -15,7 +23,7 @@ const ProductItem = (props) => {
           />
         </div>
         <div className={classes.name}>{props.name}</div>
-        <div className={classes.description}>{props.description}</div>
+        <div className={classes.description}>{reduceDescription(props.description)}</div>
         <div className={classes.price}>{price}</div>
       </div>
       <div className={classes.actions}>
