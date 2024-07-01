@@ -14,6 +14,8 @@ const AvailableProducts = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(8);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -56,18 +58,54 @@ const AvailableProducts = () => {
     setSelectedProduct(null);
   };
 
-  const productsList = products.map((product) => (
-    <ProductItem
-      key={product.id}
-      id={product.id}
-      name={product.name}
-      description={product.description}
-      price={product.price}
-      image={product.image}
-      onClick={() => showProductDetails(product)}
-    />
-  ));
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
+  //Calculate the number of Pages
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+
+  // Determine the current page's product indices
+  const getProductIndexForPage = (page) => {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return { startIndex, endIndex };
+  };
+
+  const productsList = products.map((product, index) => {
+    const { startIndex, endIndex } = getProductIndexForPage(currentPage);
+    if (index >= startIndex && index < endIndex) {  
+      return (
+          <ProductItem
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            description={product.description}
+            price={product.price}
+            image={product.image}
+            onClick={() => showProductDetails(product)}
+          />
+        );
+  }
+  return null;
+});
+   
+const renderPaginationControls = () => {
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(
+      <button
+        key={i}
+        onClick={() => handlePageChange(i)}
+        className={currentPage === i ? classes.active : ""}
+      >
+        {i}
+      </button>
+    );
+  }
+  return pageNumbers;
+};
+  
   return (
     <section className={classes.products}>
       {selectedProduct && (
@@ -79,6 +117,7 @@ const AvailableProducts = () => {
         </Modal>
       )}
       <div className={classes.grid}>{productsList}</div>
+      <div className={classes.pagination}>{renderPaginationControls()}</div>
     </section>
   );
 };

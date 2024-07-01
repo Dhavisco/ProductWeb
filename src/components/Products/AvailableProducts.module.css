@@ -24,6 +24,37 @@
   padding: 0;
 }
 
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background-color: #f0f0f0;
+}
+
+.pagination button.active {
+ background-color: #145500;
+border: 1px solid #208501;
+
+  color: white;
+}
+
+.pagination button:hover {
+  background-color: #145500b7;
+border: 1px solid #208501af;
+
+  color: white;
+}
+
+
+
 @keyframes products-appear {
   from {
     opacity: 0;
